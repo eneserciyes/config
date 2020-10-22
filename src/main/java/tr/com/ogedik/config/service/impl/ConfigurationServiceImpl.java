@@ -17,26 +17,26 @@ import tr.com.ogedik.config.validator.ConfigurationValidationFacade;
 
 import java.util.List;
 
-/**
- * @author orkun.gedik
- */
+/** @author orkun.gedik */
 @Service
 public class ConfigurationServiceImpl implements ConfigurationService {
 
   private static final Logger logger = LogManager.getLogger(ConfigurationServiceImpl.class);
 
-  @Autowired
-  private ConfigurationRepositoryManager repositoryManager;
-  @Autowired
-  private ConfigurationValidationFacade validationFacade;
+  @Autowired private ConfigurationRepositoryManager repositoryManager;
+  @Autowired private ConfigurationValidationFacade validationFacade;
 
   @Override
   public JiraConfigurationProperties getJiraConfiguration() {
     JiraConfigurationProperties jiraConfigurationProperties = new JiraConfigurationProperties();
-    jiraConfigurationProperties.setBaseURL(retrieveConfig(JiraProperty.JIRA_BASE_URL).getPropertyValue());
-    jiraConfigurationProperties.setUsername(retrieveConfig(JiraProperty.JIRA_USERNAME).getPropertyValue());
-    jiraConfigurationProperties.setPassword(retrieveConfig(JiraProperty.JIRA_PASSWORD).getPropertyValue());
-    jiraConfigurationProperties.setApiVersion(retrieveConfig(JiraProperty.JIRA_REST_API_VERSION).getPropertyValue());
+    jiraConfigurationProperties.setBaseURL(
+        retrieveConfig(JiraProperty.JIRA_BASE_URL).getPropertyValue());
+    jiraConfigurationProperties.setUsername(
+        retrieveConfig(JiraProperty.JIRA_USERNAME).getPropertyValue());
+    jiraConfigurationProperties.setPassword(
+        retrieveConfig(JiraProperty.JIRA_PASSWORD).getPropertyValue());
+    jiraConfigurationProperties.setApiVersion(
+        retrieveConfig(JiraProperty.JIRA_REST_API_VERSION).getPropertyValue());
 
     return jiraConfigurationProperties;
   }
@@ -64,8 +64,10 @@ public class ConfigurationServiceImpl implements ConfigurationService {
       insertedProperty = repositoryManager.insertProperty(property);
 
       if (insertedProperty == null) {
-        throw new ErrorException(CommonErrorType.DATA_ACCESS_EXCEPTION,
-            "Configuration Property cannot be inserted. Configuration Property Key:" + property.getPropertyKey());
+        throw new ErrorException(
+            CommonErrorType.DATA_ACCESS_EXCEPTION,
+            "Configuration Property cannot be inserted. Configuration Property Key:"
+                + property.getPropertyKey());
       }
     }
 

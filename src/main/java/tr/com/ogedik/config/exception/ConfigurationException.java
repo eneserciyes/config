@@ -1,8 +1,6 @@
 package tr.com.ogedik.config.exception;
 
-/**
- * @author orkun.gedik
- */
+/** @author orkun.gedik */
 public class ConfigurationException extends RuntimeException {
 
   public ConfigurationException(String message, String detail) {

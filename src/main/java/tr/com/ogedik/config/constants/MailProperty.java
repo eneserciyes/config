@@ -2,9 +2,7 @@ package tr.com.ogedik.config.constants;
 
 import lombok.Getter;
 
-/**
- * @author orkun.gedik
- */
+/** @author orkun.gedik */
 @Getter
 public enum MailProperty implements GenericProperty {
   SMTP_HOST(null),

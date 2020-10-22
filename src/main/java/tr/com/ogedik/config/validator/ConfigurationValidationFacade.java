@@ -14,20 +14,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @author orkun.gedik
- */
+/** @author orkun.gedik */
 @Component
 public class ConfigurationValidationFacade extends ValidationFacade {
-private List<String> jiraProperties;
+  private List<String> jiraProperties;
 
+  @PostConstruct
+  public void setup() {
+    jiraProperties =
+        Arrays.stream(JiraProperty.values()).map(Enum::name).collect(Collectors.toList());
+  }
 
-    @PostConstruct
-    public void setup() {
-        jiraProperties = Arrays.stream(JiraProperty.values()).map(Enum::name).collect(Collectors.toList());
-    }
-  
-  
   public void validateCreate(BusinessObject businessObject) {
     validate(businessObject, MandatoryFieldValidator.getInstance());
   }
@@ -38,7 +35,7 @@ private List<String> jiraProperties;
     for (String jiraProperty : jiraProperties) {
       flag = false;
       for (ConfigurationProperty configurationProperty : configurationProperties) {
-          validateCreate(configurationProperty);
+        validateCreate(configurationProperty);
         if (jiraProperty.equals(configurationProperty.getPropertyKey())) {
           flag = true;
           break;

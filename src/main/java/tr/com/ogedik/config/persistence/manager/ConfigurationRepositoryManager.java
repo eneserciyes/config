@@ -13,17 +13,13 @@ import tr.com.ogedik.config.persistence.repository.ConfigurationRepository;
 
 import java.util.Objects;
 
-/**
- * @author orkun.gedik
- */
+/** @author orkun.gedik */
 @Service
 public class ConfigurationRepositoryManager {
   private static final Logger logger = LogManager.getLogger(ConfigurationRepositoryManager.class);
 
-  @Autowired
-  private ConfigurationRepository configurationRepository;
-  @Autowired
-  private ConfigurationMapper configurationMapper;
+  @Autowired private ConfigurationRepository configurationRepository;
+  @Autowired private ConfigurationMapper configurationMapper;
 
   @Cacheable(key = "#configKey")
   public ConfigurationProperty find(String configKey) {
@@ -36,15 +32,18 @@ public class ConfigurationRepositoryManager {
 
   @CacheEvict(key = "#property.propertyKey")
   public ConfigurationProperty insertProperty(ConfigurationProperty property) {
-    
-    ConfigurationPropertyEntity retrievedEntity = configurationRepository.findByPropertyKey(property.getPropertyKey());
+
+    ConfigurationPropertyEntity retrievedEntity =
+        configurationRepository.findByPropertyKey(property.getPropertyKey());
     ConfigurationPropertyEntity requestedEntity = configurationMapper.convert(property);
 
     if (Objects.isNull(retrievedEntity)) {
-      logger.info("There is not such a configuration with key : {}. New configuration property will be inserted.",
+      logger.info(
+          "There is not such a configuration with key : {}. New configuration property will be inserted.",
           property.getPropertyKey());
     } else {
-      logger.info("There is an existed configuration with key : {}. New configuration property will be updated.",
+      logger.info(
+          "There is an existed configuration with key : {}. New configuration property will be updated.",
           property.getPropertyKey());
     }
 

@@ -1,9 +1,6 @@
 package tr.com.ogedik.config.constants;
 
-
-/**
- * @author orkun.gedik
- */
+/** @author orkun.gedik */
 public interface GenericProperty {
 
   String name();

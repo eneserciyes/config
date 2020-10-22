@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * @author orkun.gedik
- */
+/** @author orkun.gedik */
 @Configuration
 public class ConfigurationConfig {
 
@@ -27,19 +25,22 @@ public class ConfigurationConfig {
    */
   @Bean
   public Config configure() {
-    return new Config().setInstanceName(this.instanceName).addMapConfig(initMapConfig().setName(this.configName));
+    return new Config()
+        .setInstanceName(this.instanceName)
+        .addMapConfig(initMapConfig().setName(this.configName));
   }
 
   /**
    * Returns an instance of {@link MapConfig}.
    *
-   * @implNote MapConfig name should be set after this method has been called via {@link MapConfig#setName}
-   *  E.g -> new Config().setInstanceName(instanceName).addMapConfig(initMapConfig().setName(configName))
-   *
+   * @implNote MapConfig name should be set after this method has been called via {@link
+   *     MapConfig#setName} E.g -> new
+   *     Config().setInstanceName(instanceName).addMapConfig(initMapConfig().setName(configName))
    * @return {@link MapConfig}
    */
   private MapConfig initMapConfig() {
-    return new MapConfig().setMaxSizeConfig(new MaxSizeConfig(200, MaxSizeConfig.MaxSizePolicy.FREE_HEAP_SIZE))
+    return new MapConfig()
+        .setMaxSizeConfig(new MaxSizeConfig(200, MaxSizeConfig.MaxSizePolicy.FREE_HEAP_SIZE))
         .setEvictionPolicy(EvictionPolicy.LRU)
         .setTimeToLiveSeconds(2000);
   }

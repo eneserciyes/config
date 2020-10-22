@@ -5,9 +5,7 @@ import tr.com.ogedik.config.model.ConfigurationProperty;
 
 import java.util.List;
 
-/**
- * @author orkun.gedik
- */
+/** @author orkun.gedik */
 public interface ConfigurationService {
 
   JiraConfigurationProperties getJiraConfiguration();

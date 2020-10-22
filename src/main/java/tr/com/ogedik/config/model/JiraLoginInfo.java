@@ -1,8 +1,6 @@
 package tr.com.ogedik.config.model;
 
-/**
- * @author orkun.gedik
- */
+/** @author orkun.gedik */
 public class JiraLoginInfo {
   private String failedLoginCount;
   private String loginCount;

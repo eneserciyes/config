@@ -17,22 +17,20 @@ import tr.com.ogedik.config.service.ConfigurationService;
 
 import java.util.List;
 
-/**
- * @author orkun.gedik
- */
+/** @author orkun.gedik */
 @RestController
 public class SetupController extends AbstractController {
-    private static final Logger logger = LogManager.getLogger(SetupController.class);
+  private static final Logger logger = LogManager.getLogger(SetupController.class);
 
-    @Autowired
-    private ConfigurationService configurationService;
+  @Autowired private ConfigurationService configurationService;
 
-    @PostMapping(Services.Path.SETUP)
-    public AbstractResponse setUp(@RequestBody List<ConfigurationProperty> configurationProperties,
-                                  @RequestHeader(value = Headers.AUTH_USER,
-                                          defaultValue = Headers.ANONYMOUS) String authenticatedUsername) {
-        logger.info("The request has been received to test JIRA instance connection.");
-        MetaUtils.fillMetaList(configurationProperties, authenticatedUsername);
-        return AbstractResponse.build(configurationService.setUp(configurationProperties));
-    }
+  @PostMapping(Services.Path.SETUP)
+  public AbstractResponse setUp(
+      @RequestBody List<ConfigurationProperty> configurationProperties,
+      @RequestHeader(value = Headers.AUTH_USER, defaultValue = Headers.ANONYMOUS)
+          String authenticatedUsername) {
+    logger.info("The request has been received to test JIRA instance connection.");
+    MetaUtils.fillMetaList(configurationProperties, authenticatedUsername);
+    return AbstractResponse.build(configurationService.setUp(configurationProperties));
+  }
 }

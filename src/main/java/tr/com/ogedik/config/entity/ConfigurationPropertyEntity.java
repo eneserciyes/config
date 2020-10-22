@@ -10,9 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-/**
- * @author orkun.gedik
- */
+/** @author orkun.gedik */
 @Entity
 @Getter
 @Setter
@@ -25,5 +23,4 @@ public class ConfigurationPropertyEntity extends AbstractEntity {
 
   @Column(name = ConfigurationConstants.COLS.PROPERTY_VALUE)
   private String propertyValue;
-
 }
