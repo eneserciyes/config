@@ -1,6 +1,7 @@
 package tr.com.ogedik.config.service;
 
 import tr.com.ogedik.commons.rest.request.model.JiraConfigurationProperties;
+import tr.com.ogedik.commons.rest.request.model.MailServerProperties;
 import tr.com.ogedik.config.model.ConfigurationProperty;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface ConfigurationService {
 
   JiraConfigurationProperties getJiraConfiguration();
 
-  List<ConfigurationProperty> getMailServiceConfiguration();
+  MailServerProperties getMailServerConfiguration();
 
   ConfigurationProperty configure(ConfigurationProperty property);
 

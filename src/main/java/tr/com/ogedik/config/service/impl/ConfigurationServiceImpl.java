@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tr.com.ogedik.commons.expection.ErrorException;
 import tr.com.ogedik.commons.expection.constants.CommonErrorType;
 import tr.com.ogedik.commons.rest.request.model.JiraConfigurationProperties;
+import tr.com.ogedik.commons.rest.request.model.MailServerProperties;
 import tr.com.ogedik.config.constants.GenericProperty;
 import tr.com.ogedik.config.constants.JiraProperty;
 import tr.com.ogedik.config.model.ConfigurationProperty;
@@ -42,9 +43,17 @@ public class ConfigurationServiceImpl implements ConfigurationService {
   }
 
   @Override
-  public List<ConfigurationProperty> getMailServiceConfiguration() {
-    // TODO
-    return null;
+  public MailServerProperties getMailServerConfiguration(){
+    MailServerProperties mailServerProperties = new MailServerProperties();
+    mailServerProperties.setHost(
+            retrieveConfig(JiraProperty.SMTP_HOST).getPropertyValue());
+    mailServerProperties.setPort(
+            retrieveConfig(JiraProperty.SMTP_PORT).getPropertyValue());
+    mailServerProperties.setUsername(
+            retrieveConfig(JiraProperty.SMTP_USERNAME).getPropertyValue());
+    mailServerProperties.setPassword(
+            retrieveConfig(JiraProperty.SMTP_PASSWORD).getPropertyValue());
+    return mailServerProperties;
   }
 
   @Override
@@ -58,7 +67,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
   @Transactional
   public Boolean setUp(List<ConfigurationProperty> configurationProperties) {
     validationFacade.validateSetup(configurationProperties);
-
+    //TODO: mail server validation
     ConfigurationProperty insertedProperty;
     for (ConfigurationProperty property : configurationProperties) {
       insertedProperty = repositoryManager.insertProperty(property);

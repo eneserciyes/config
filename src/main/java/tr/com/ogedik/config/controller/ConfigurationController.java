@@ -42,9 +42,9 @@ public class ConfigurationController extends AbstractController {
    * @return {@link AbstractResponse} that contains mail server configuration properties
    */
   @GetMapping(Services.Path.MAIL)
-  public AbstractResponse getMailServerConfig() {
+  public ResponseEntity getMailServerConfig() {
     logger.info("The request has been received to retrieve Mail Server configuration.");
-    return AbstractResponse.build(configurationService.getMailServiceConfiguration());
+    return ResponseEntity.of(Optional.of(configurationService.getMailServerConfiguration()));
   }
 
   /**
