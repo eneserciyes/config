@@ -10,7 +10,6 @@ spring:
     username: ${DATABASE_USERNAME:root}
   jpa:
     hibernate:
-      ddl-auto: create
       use-new-id-generator-mappings: false
     properties:
       hibernate:
